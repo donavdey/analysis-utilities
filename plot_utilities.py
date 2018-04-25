@@ -117,7 +117,7 @@ def plot_feature_importance(classifier, X, Y, title="Feature Importance"):
     return plt
 
 
-def plot_regression_for_numerical_features(X_feature_name, Y_feature_name, data, is_optional_feature=False):
+def plot_regression_for_numerical_features(X_feature_name, Y_feature_name, data, is_optional_feature=False, order=1):
     values = data[data[X_feature_name].notna()][[X_feature_name, Y_feature_name]]
     if is_optional_feature:
         values = values[values[X_feature_name] != 0]
@@ -130,8 +130,8 @@ def plot_regression_for_numerical_features(X_feature_name, Y_feature_name, data,
     ax3.set_title("log(x)-log(y)")
     ax4 = fig.add_subplot(224)
     ax4.set_title("x-log(y)")
-    sns.regplot(x=values[X_feature_name], y=values[Y_feature_name], color="g", ax=ax1)
-    sns.regplot(x=np.log(values[X_feature_name]), y=values[Y_feature_name], color="g", ax=ax2)
-    sns.regplot(x=np.log(values[X_feature_name]), y=np.log(values[Y_feature_name]), color="g", ax=ax3)
-    sns.regplot(x=values[X_feature_name], y=np.log(values[Y_feature_name]), color="g", ax=ax4)
+    sns.regplot(x=values[X_feature_name], y=values[Y_feature_name], color="g", ax=ax1, order=order)
+    sns.regplot(x=np.log(values[X_feature_name]), y=values[Y_feature_name], color="g", ax=ax2, order=order)
+    sns.regplot(x=np.log(values[X_feature_name]), y=np.log(values[Y_feature_name]), color="g", ax=ax3, order=order)
+    sns.regplot(x=values[X_feature_name], y=np.log(values[Y_feature_name]), color="g", ax=ax4, order=order)
     return plt
