@@ -66,7 +66,7 @@ def evaluate(target_feature, dataset="train_final.csv", id_feature="Id", classif
     cv = ShuffleSplit(n_splits=200, test_size=0.25, random_state=0)
     for name, classifier in classifiers.items():
         filename = name + ".png"
-        pu.plot_learning_curve(classifier, x, y, cv=cv, title="Learning Curve " + name).savefig(
+        plot_learning_curve(classifier, x, y, cv=cv, title="Learning Curve " + name).savefig(
             "score/learning curve/" + filename)
 
 
